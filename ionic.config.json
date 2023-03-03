@@ -1,0 +1,7 @@
+{
+  "name": "Payment-card-check",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

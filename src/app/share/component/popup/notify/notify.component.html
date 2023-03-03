@@ -1,0 +1,18 @@
+<ion-row class="ion-justify-content-center ion-align-items-center h-100 radius-10 ion-padding-horizontal ">
+  <div class="modal-rounded ion-text-center background-white w-100 ion-padding-bottom"
+    [ngClass]="isSuccess ? '' : 'pt-2'">
+    <ion-img *ngIf="isSuccess !== null"
+      [src]="isSuccess === true ? '../../../assets/icon/success.svg' : isSuccess === false ? '../../../../assets/icon/cancel.svg' : ''"
+      [ngClass]="isSuccess ? 'm-2' : 'ion-margin-top m-auto'" [ngStyle]="{'width': isSuccess ? '' : '120px', 'height': isSuccess ? '150px' : '120px' }">
+    </ion-img>
+    <h1 class="font-weight-800 font-size-24" [ngClass]="isSuccess ? 'text-primary' : 'text-danger'">{{ headerText }}</h1>
+    <div class="m-auto mb-2 w-80">
+      <ion-text class="text-grey h-20px">{{ message }}</ion-text>
+      <div class="m-2" *ngFor="let btn of buttons">
+        <ion-button class="btn-next font-bold" (click)="closePopup(btn.link)" expand="block" shape="round">
+          {{ btn.title }}
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-row>

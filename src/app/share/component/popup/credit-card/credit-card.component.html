@@ -1,0 +1,49 @@
+<ion-content class="ion-padding ion-margin-horizontal">
+  <ion-toolbar mode="md">
+    <ion-title class="ion-text-start ion-no-padding">Credit card</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon class="me-1" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-row class="w-100 card">
+    <ion-col size="12" class="ion-no-padding border-line pb-3 ">
+      <ion-row class="form-group">
+        <ion-col size="6" sizeMd="8" class="ion-no-padding">
+          <div class="row">
+            <ion-col size="2" class="d-flex ion-justify-content-center align-items-center ion-no-padding">
+              <img class="image" [src]="renderIcon()">
+            </ion-col>
+            <ion-col size="10" class="d-flex ion-justify-content-center align-items-center">
+              <input type="text" [(ngModel)]="cardNumber" name="card-num"
+                     placeholder="Enter card number" size="18"
+                     class="w-100"
+                     (keyup)="cardNumChange($event)"
+                     minlength="19" maxlength="19">
+            </ion-col>
+          </div>
+        </ion-col>
+        <ion-col size="6" sizeMd="4" class="ion-no-padding">
+          <ion-row class="h-100 d-flex ion-justify-content-center ion-align-items-center">
+            <input type="text" name="exp" [(ngModel)]="exp" placeholder="MM/YY" size="6" id="exp"
+                   minlength="5"
+                   [imask]="expirationDateMask"
+                   maxlength="5" (keyup)="expDateChange($event)">
+            <input type="text" name="cvc" [(ngModel)]="cvc" placeholder="CVC" size="1" minlength="3"
+                   (keyup)="cardPasswordChange($event)"
+                   maxlength="3">
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-item lines="none" class="ion-no-padding" mode="ios">
+        <ion-checkbox slot="start" [(ngModel)]="saveCard" mode="md"></ion-checkbox>
+        <ion-label>Save your card details for your next order</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-button class="w-100 btn-payment ion-padding-horizontal" color="primary" (click)="paymentSuccess()"
+              [disabled]="this.isMaskType.cardType == 'unknown'">
+    <ion-text class="ion-padding-vertical">US ${{numberPayment}} make a payment</ion-text>
+  </ion-button>
+</ion-content>
